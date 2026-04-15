@@ -47,6 +47,8 @@ set(SOURCES
 # -----------------------------------------------------------------------------
 set(INCLUDES
     Inc
+    chip_header/CMSIS/Core/Include
+    chip_header/CMSIS/Device/ST/STM32F1xx/Include
 )
 
 # -----------------------------------------------------------------------------
