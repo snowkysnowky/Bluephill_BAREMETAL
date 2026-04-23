@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdint.h>
 #include "stm32f103xb.h"
 
@@ -20,13 +21,19 @@ static uint16_t compute_uart_bd(uint32_t PeriphClock, uint32_t BaudRate);
 void uart1_tx_init (void);
 void uart1_write (int ch);
 
+int __io_putchar(int ch)
+{
+    uart1_write(ch);
+    return ch;
+}
+
 int main(void){
 
     uart1_tx_init();
     
     while(1)
     {
-        uart1_write('Y');
+        printf("Hello from STM32F103......\n\r");
     }
 
 }
