@@ -1,0 +1,25 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Cortex Debug (OpenOCD)",
+			"type": "cortex-debug",
+			"request": "launch",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 4
+            },
+			"servertype": "openocd",
+			"cwd": "${workspaceFolder}",
+			"executable": "${workspaceFolder}/build/Debug/Bluephill_BAREMETAL.elf",
+			"runToEntryPoint": "main",
+			"configFiles": [
+				"interface/stlink.cfg",
+				"target/stm32f1x.cfg"
+			],
+			"preLaunchTask": "build",
+			"postDebugTask": "stop-openocd",
+			"requestTimeout": 20000
+		}
+	]
+}

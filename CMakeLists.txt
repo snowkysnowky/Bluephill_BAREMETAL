@@ -40,6 +40,7 @@ set(MCU_FLAGS
 set(SOURCES
     Src/main.c
     Src/startup_stm32f103xx.S
+    Src/uart.c
 )
 
 # -----------------------------------------------------------------------------
@@ -72,8 +73,12 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wextra
     -Wpedantic
     -O0
+    -g3
+    -ggdb3
+    -gdwarf-2
     -ffunction-sections
     -fdata-sections
+    -fno-omit-frame-pointer
 )
 
 # -----------------------------------------------------------------------------
@@ -97,7 +102,12 @@ target_link_options(${PROJECT_NAME} PRIVATE
     --specs=nosys.specs
     -Wl,--gc-sections
     -Wl,-Map=${PROJECT_NAME}.map
+    -Wl,--print-memory-usage
+    -Wl,--cref
 )
+
+# Add debug symbols to linker
+target_link_options(${PROJECT_NAME} PRIVATE -g3 -ggdb3)
 
 # -----------------------------------------------------------------------------
 # Post build: size, hex, bin
@@ -141,3 +151,4 @@ add_custom_target(flash_fw
     DEPENDS ${PROJECT_NAME}
     COMMENT "Building and flashing firmware"
 )
+
