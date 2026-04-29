@@ -41,6 +41,7 @@ set(SOURCES
     Src/main.c
     Src/startup_stm32f103xx.S
     Src/uart.c
+    Src/adc.c
 )
 
 # -----------------------------------------------------------------------------
