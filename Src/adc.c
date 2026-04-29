@@ -27,7 +27,9 @@ void pa1_adc_init(void)
 
 void start_conversion(void)
 {
+    ADC1->CR2 |= ADC_CR2_CONT;
     ADC1->CR2 |= ADC_CR2_ADON; // Trigger conversion by writing ADON again (STM32F1 quirk)
+    // ADC1->CR2 |= ADC_CR2_SWSTART; // Start conversion
 }
 
 uint16_t adc_read(void)

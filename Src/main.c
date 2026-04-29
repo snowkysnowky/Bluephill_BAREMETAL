@@ -11,13 +11,13 @@ int main(void){
     
     uart1_tx_init();
     pa1_adc_init();
-    
+    start_conversion();
     
     while(1)
     {
-        start_conversion();
+        
         adc_value = adc_read();
-        printf("ADC Value: %lu\n", adc_value);
+        printf("ADC Value: %d\r\n", adc_value);
     }
 }
 

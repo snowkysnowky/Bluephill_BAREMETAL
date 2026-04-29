@@ -27,10 +27,10 @@ int __io_putchar(int ch)
     return ch;
 }
 
+
 void uart1_tx_init (void)
 {
     /********************Configure UART1 TX pin**********************/
-
     //1. Enable clock access to GPIOB
     RCC->APB2ENR |= GPIOBEN;
     
@@ -42,7 +42,8 @@ void uart1_tx_init (void)
     GPIOB->CRL |= (0xB << 24); // Set the bits for PB6 to alternate function output push-pull (0b1011)
 
     //4. Set PB6 alternate function type to UART1_REMAP=1
-    AFIO->MAPR |= (1 << 2); // Set the bit for UART1_REMAP to 1`
+    AFIO->MAPR |= (1 << 2); // Set the bit for UART1_REMAP to 1
+    
 
     /********************Configure UART1 Module**********************/
     //1. Enable clock access to UART1
@@ -51,12 +52,13 @@ void uart1_tx_init (void)
     //2. Configure baud rate
     uart1_set_baudrate(USART1, APB2_CLK, UART1_BAUDRATE);
 
-    //3. Configure transfer direction (TX only)
-    USART1->CR1 |= CR1_TE; // Enable transmitter only
+    //3. Configure transfer direction (TX/RX)
+    USART1->CR1 = CR1_TE; // Enable transmitter
 
     //4. Enable UART1 module
     USART1->CR1 |= CR1_UE; // Enable UART1
 }
+
 
 void uart1_rxtx_init (void)
 {
