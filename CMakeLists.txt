@@ -42,6 +42,7 @@ set(SOURCES
     Src/startup_stm32f103xx.S
     Src/uart.c
     Src/adc.c
+    Src/systick.c
 )
 
 # -----------------------------------------------------------------------------
