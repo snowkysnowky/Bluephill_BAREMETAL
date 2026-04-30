@@ -21,10 +21,14 @@ static uint16_t compute_uart_bd(uint32_t PeriphClock, uint32_t BaudRate);
 void uart1_tx_init (void);
 void uart1_write (int ch);
 
-int __io_putchar(int ch)
+int _write(int file, char *ptr, int len)
 {
-    uart1_write(ch);
-    return ch;
+    (void)file; // To silence unused parameter warning
+    for (int i = 0; i < len; i++)
+    {
+        uart1_write(ptr[i]);
+    }
+    return len;
 }
 
 int main(void){
@@ -34,6 +38,7 @@ int main(void){
     while(1)
     {
         printf("Hello from STM32F103......\n\r");
+        // uart1_write('b');
     }
 
 }
